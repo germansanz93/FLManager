@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "provider")
+@Table(name = "providers")
 public class Provider {
     @Id
     @GeneratedValue(generator = "uuid")
