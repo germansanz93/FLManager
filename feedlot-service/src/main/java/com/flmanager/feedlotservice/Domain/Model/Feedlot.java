@@ -23,6 +23,6 @@ public class Feedlot {
   @GeneratedValue(generator = "uuid")
   @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
   private String id;
-  private Date initialDate;
+  private Date startDate;
   private Date deletedAt;
 }

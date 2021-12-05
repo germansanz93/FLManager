@@ -12,6 +12,8 @@ tags:
     description: "Provider operations"
   - name: "Calf"
     description: "Calf operations"
+  - name: "Feelot"
+    description: "Feedlot operations"
 
 schemes:
   - "https"
@@ -332,7 +334,7 @@ paths:
           schema:
             $ref: "#/definitions/ErrorInternalServerResponse"
   
-  /calf/idCalf/slaughter:
+  /calf/{idCalf}/slaughter:
     post:
       tags:
         - "Calf"
@@ -372,7 +374,7 @@ paths:
           schema:
             $ref: "#/definitions/ErrorInternalServerResponse"
 
-  /calf/idCalf/weight:
+  /calf/{idCalf}/weight:
     post:
       tags:
         - "Calf"
@@ -411,10 +413,97 @@ paths:
           description: "Internal Server Error"
           schema:
             $ref: "#/definitions/ErrorInternalServerResponse"
+  /feedlot:
+    get:
+      tags:
+        - "Feedlot"
+      summary: "get Feedlots list"
+      operationId: "GetFeedlots"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/arrayOfFeedlots"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorNotFoundResponse"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorInternalServerResponse"
 
-
+  /feedlot/{id}:
+    get:
+      tags:
+        - "Feedlot"
+      summary: "get Feedlot by id"
+      operationId: "GetFeedlotById"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "ID of feedlot to get"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/feedlotResponse"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorNotFoundResponse"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorInternalServerResponse"
 
 definitions:
+
+  feedlotResponse:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      startDate:
+        type: "string"
+      calves:
+        type: "array"
+        items:
+          $ref: "#/definitions/calf"
+
+  arrayOfFeedlots:
+    type: "array"
+    items: 
+      $ref: "#/definitions/feedlotListItem"
+
+  feedlotListItem:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      startDate:
+        type: "string"
+      provider:
+        type: "string"
+      animalsAlive:
+        type: "number"
+      animalsSlaughtered:
+        type: "number"
+
 
   weightRequest:
     type: "object"
