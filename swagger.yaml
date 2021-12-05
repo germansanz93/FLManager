@@ -1,0 +1,544 @@
+swagger: "2.0"
+info:
+  description: "Feedlot service for FLManager"
+  version: "1.0.0"
+  title: "FLManager"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:8080"
+tags:
+  - name: "Provider"
+    description: "Provider operations"
+  - name: "Calf"
+    description: "Calf operations"
+
+schemes:
+  - "https"
+  - "http"
+
+paths:
+  /provider:
+    get:
+      tags:
+        - "Provider"
+      summary: "get all providers"
+      operationId: "GetProviders"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/arrayOfProviders"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorNotFoundResponse"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorInternalServerResponse"
+    post:
+      tags:
+        - "Provider"
+      summary: "Create a Provider"
+      operationId: "CreateProvider"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Provider that needs to be added to the app"
+          required: true
+          schema:
+            $ref: "#/definitions/providerRequest"
+      responses:
+        201:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/provider"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorNotFoundResponse"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorInternalServerResponse"
+
+  /provider/{idProvider}:
+    get:
+      tags:
+        - "Provider"
+      summary: "get Provider by idProvider"
+      operationId: "GetProviderById"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "idProvider"
+          in: "path"
+          description: "ID of provider to return"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: '#/definitions/provider'
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorNotFoundResponse"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorInternalServerResponse"
+    delete:
+      tags:
+        - "Provider"
+      summary: "Delete provider by idProvider"
+      operationId: "DeleteProviderById"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "idProvider"
+          in: "path"
+          description: "Provider id"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorNotFoundResponse"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorInternalServerResponse"
+    put:
+      tags:
+        - "Provider"
+      summary: "Update Provider"
+      operationId: "UpdateProvider"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "idProvider"
+          in: "path"
+          description: "ID of provider to return"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Update Provider"
+          required: true
+          schema:
+            $ref: "#/definitions/providerRequest"
+      responses:
+        201:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/provider"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorNotFoundResponse"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorInternalServerResponse"
+
+  /calf:
+    get:
+      tags:
+        - "Calf"
+      summary: "get all calves"
+      operationId: "GetCalves"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/arrayOfCalves"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorNotFoundResponse"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorInternalServerResponse"
+    post:
+      tags:
+        - "Calf"
+      summary: "Create a Calf"
+      operationId: "CreateCalf"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Calf that needs to be added to the app"
+          required: true
+          schema:
+            $ref: "#/definitions/calfRequest"
+      responses:
+        201:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/calf"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorNotFoundResponse"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorInternalServerResponse"
+
+  /calf/{idCalf}:
+    get:
+      tags:
+        - "Calf"
+      summary: "get Calf by idCalf"
+      operationId: "GetCalfById"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "idCalf"
+          in: "path"
+          description: "ID of calf to return"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: '#/definitions/calf'
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorNotFoundResponse"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorInternalServerResponse"
+    delete:
+      tags:
+        - "Calf"
+      summary: "Delete calf by idCalf"
+      operationId: "DeleteCalfById"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "idCalf"
+          in: "path"
+          description: "Calf id"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorNotFoundResponse"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorInternalServerResponse"
+    put:
+      tags:
+        - "Calf"
+      summary: "Update Calf"
+      operationId: "UpdateCalf"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "idCalf"
+          in: "path"
+          description: "ID of calf to return"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Update Calf"
+          required: true
+          schema:
+            $ref: "#/definitions/calfRequest"
+      responses:
+        201:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/calf"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorNotFoundResponse"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorInternalServerResponse"
+  
+  /calf/idCalf/slaughter:
+    post:
+      tags:
+        - "Calf"
+      summary: "Slaughter a Calf"
+      operationId: "SlaughterCalf"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "idCalf"
+          in: "path"
+          description: "ID of calf to slaughter"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Calf that needs to be slaughtered"
+          required: true
+          schema:
+            $ref: "#/definitions/slaughterRequest"
+      responses:
+        201:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/calf"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorNotFoundResponse"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorInternalServerResponse"
+
+  /calf/idCalf/weight:
+    post:
+      tags:
+        - "Calf"
+      summary: "Weight a Calf"
+      operationId: "WeightCalf"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "idCalf"
+          in: "path"
+          description: "ID of calf to weight"
+          required: true
+          type: "string"
+        - name: "body"
+          in: "body"
+          description: "Calf that needs to be weighted"
+          required: true
+          schema:
+            $ref: "#/definitions/weightRequest"
+      responses:
+        201:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/calf"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorNotFoundResponse"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorInternalServerResponse"
+
+
+
+definitions:
+
+  weightRequest:
+    type: "object"
+    properties:
+      weight:
+        type: "number"
+
+  slaughterRequest:
+    type: "object"
+    properties:
+      slaughterDate:
+        type: "string"
+      slaughterWeight:
+        type: "number"
+      customerId:
+        type: "string"
+
+  arrayOfCalves:
+    type: "array"
+    items:
+      $ref: "#/definitions/calf"
+
+  calfRequest:
+    type: "object"
+    properties:
+      idCalf:
+        type: "string"
+      earTag:
+        type: "string"
+      gender:
+        type: "string"
+        example: "M"
+      purchaseDate:
+        type: "string"
+      idProvider:
+        type: "string"
+
+  calf:
+    type: "object"
+    properties:
+      idCalf:
+        type: "string"
+      earTag:
+        type: "string"
+      gender:
+        type: "string"
+        example: "M"
+      purchaseDate:
+        type: "string"
+      slaughterDate:
+        type: "string"
+      provider:
+        $ref: "#/definitions/provider"
+
+  arrayOfProviders:
+    type: "array"
+    items:
+      $ref: "#/definitions/provider"
+
+  provider:
+    type: "object"
+    properties:
+      idProvider:
+        type: "string"
+      name:
+        type: "string"
+      lastName:
+        type: "string"
+      address: 
+        type: "string"
+      phone: 
+        type: "string"
+      email:
+        type: "string"
+
+  providerRequest:
+    type: "object"
+    properties: 
+      name:
+        type: "string"
+      lastName:
+        type: "string"
+      address: 
+        type: "string"
+      phone: 
+        type: "string"
+      email:
+        type: "string"
+
+  ErrorNotFoundResponse:
+    type: "object"
+    properties:
+      code:
+        type: "string"
+        example: "GENERIC_NOT_FOUND"
+      message:
+        type: "string"
+        example: "Resource Not Found"
+      result:
+        type: "string"
+        example: "GENERIC_NOT_FOUND"
+
+  ErrorBadRequestResponse:
+    type: "object"
+    properties:
+      code:
+        type: "string"
+        example: "GENERIC_BAD_REQUEST"
+      message:
+        type: "string"
+        example: "Invalid Request"
+      result:
+        type: "string"
+        example: "GENERIC_NOT_FOUND"
+
+  ErrorInternalServerResponse:
+    type: "object"
+    properties:
+      code:
+        type: "string"
+        example: "GENERIC_INTERNAL_SERVER_ERROR"
+      message:
+        type: "string"
+        example: "Internal Server Error"
+      result:
+        type: "string"
+        example: "GENERIC_INTERNAL_SERVER_ERROR"
