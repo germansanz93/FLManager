@@ -24,4 +24,5 @@ public class Feedlot {
   @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
   private String id;
   private Date initialDate;
+  private Date deletedAt;
 }

@@ -26,7 +26,9 @@ public class Calf {
   private String idCalf;
   private String earTag;
   private Character gender;
-  private Date purchaseDate;
   private UUID provider;
   private UUID feedLot;
+  private Date purchaseDate;
+  private Date slaughterDate;
+  private Date deletedAt;
 }

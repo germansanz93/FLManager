@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -27,4 +28,5 @@ public class Provider {
     private String address;
     private String phone;
     private String email;
+    private Date deletedAt;
 }
