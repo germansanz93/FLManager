@@ -23,7 +23,7 @@ public class Calf {
   @Id
   @GeneratedValue(generator = "uuid")
   @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
-  private String id;
+  private String idCalf;
   private String earTag;
   private Character gender;
   private Date purchaseDate;

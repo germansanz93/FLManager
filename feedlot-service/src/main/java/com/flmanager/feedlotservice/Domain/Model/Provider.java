@@ -21,8 +21,9 @@ public class Provider {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
-    private String id;
+    private String idProvider;
     private String name;
+    private String lastName;
     private String address;
     private String phone;
     private String email;

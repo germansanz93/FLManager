@@ -1,0 +1,250 @@
+swagger: "2.0"
+info:
+  description: "Feedlot service for FLManager"
+  version: "1.0.0"
+  title: "FLManager"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:8080"
+tags:
+  - name: "Provider"
+    description: "Provider operations"
+  - name: "Calf"
+    description: "Calf operations"
+
+schemes:
+  - "https"
+  - "http"
+
+paths:
+  /provider:
+    get:
+      tags:
+        - "Provider"
+      summary: "get all providers"
+      operationId: "GetProviders"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/provider"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorNotFoundResponse"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorInternalServerResponse"
+    post:
+      tags:
+        - "Provider"
+      summary: "Create a Provider"
+      operationId: "CreateProvider"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Provider that needs to be added to the app"
+          required: true
+          schema:
+            $ref: "#/definitions/providerRequest"
+      responses:
+        201:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/provider"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorNotFoundResponse"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorInternalServerResponse"
+
+  /provider/{idProvider}:
+    get:
+      tags:
+        - "Provider"
+      summary: "get Provider by idProvider"
+      operationId: "GetProviderById"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "idProvider"
+          in: "path"
+          description: "ID of provider to return"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: '#/definitions/provider'
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorNotFoundResponse"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorInternalServerResponse"
+    delete:
+      tags:
+        - "Provider"
+      summary: "Delete provider by idProvider"
+      operationId: "DeleteProviderById"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "idProvider"
+          in: "path"
+          description: "Provider id"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorNotFoundResponse"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorInternalServerResponse"
+    put:
+      tags:
+        - "Provider"
+      summary: "Update Provider"
+      operationId: "UpdateProvider"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "idProvider"
+          in: "path"
+          description: "ID of provider to return"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Update Provider"
+          required: true
+          schema:
+            $ref: "#/definitions/providerRequest"
+      responses:
+        201:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/provider"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorNotFoundResponse"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorInternalServerResponse"
+
+  
+
+
+definitions:
+
+  provider:
+    type: "object"
+    properties:
+      idProvider:
+        type: "string"
+      name:
+        type: "string"
+      lastName:
+        type: "string"
+      address: 
+        type: "string"
+      phone: 
+        type: "string"
+      email:
+        type: "string"
+
+  providerRequest:
+    type: "object"
+    properties: 
+      name:
+        type: "string"
+      lastName:
+        type: "string"
+      address: 
+        type: "string"
+      phone: 
+        type: "string"
+      email:
+        type: "string"
+
+  ErrorNotFoundResponse:
+    type: "object"
+    properties:
+      code:
+        type: "string"
+        example: "GENERIC_NOT_FOUND"
+      message:
+        type: "string"
+        example: "Resource Not Found"
+      result:
+        type: "string"
+        example: "GENERIC_NOT_FOUND"
+
+  ErrorBadRequestResponse:
+    type: "object"
+    properties:
+      code:
+        type: "string"
+        example: "GENERIC_BAD_REQUEST"
+      message:
+        type: "string"
+        example: "Invalid Request"
+      result:
+        type: "string"
+        example: "GENERIC_NOT_FOUND"
+
+  ErrorInternalServerResponse:
+    type: "object"
+    properties:
+      code:
+        type: "string"
+        example: "GENERIC_INTERNAL_SERVER_ERROR"
+      message:
+        type: "string"
+        example: "Internal Server Error"
+      result:
+        type: "string"
+        example: "GENERIC_INTERNAL_SERVER_ERROR"
