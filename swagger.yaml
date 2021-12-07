@@ -438,6 +438,39 @@ paths:
           description: "Internal Server Error"
           schema:
             $ref: "#/definitions/ErrorInternalServerResponse"
+    post:
+      tags:
+        - "Feedlot"
+      summary: "Create a Feedlot"
+      operationId: "createFeedlot"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "body"
+          in: "body"
+          description: "Feedlot that needs to be added to the app"
+          required: true
+          schema:
+            $ref: "#/definitions/feedlotRequest"
+      responses:
+        201:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/feedlotResponse"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorNotFoundResponse"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorInternalServerResponse"
 
   /feedlot/{id}:
     get:
@@ -471,7 +504,84 @@ paths:
           schema:
             $ref: "#/definitions/ErrorInternalServerResponse"
 
+    delete:
+      tags:
+        - "Feedlot"
+      summary: "Delete feedlot by idFeedlot"
+      operationId: "DeleteFeedlotById"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "idFeedlot"
+          in: "path"
+          description: "Feedlot id"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorNotFoundResponse"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorInternalServerResponse"
+    put:
+      tags:
+        - "Feedlot"
+      summary: "Update Feedlot"
+      operationId: "UpdateFeedlot"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "idFeedlot"
+          in: "path"
+          description: "ID of feedlot to update"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Update Feedlot"
+          required: true
+          schema:
+            $ref: "#/definitions/feedlotRequest"
+      responses:
+        201:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/feedlotResponse"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorNotFoundResponse"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorInternalServerResponse"
+
 definitions:
+
+  feedlotRequest:
+    type: "object"
+    properties:
+      startDate:
+        type: "string"
+      calves:
+        type: "array"
+        items:
+          $ref: "#/definitions/calfRequest"
 
   feedlotResponse:
     type: "object"
