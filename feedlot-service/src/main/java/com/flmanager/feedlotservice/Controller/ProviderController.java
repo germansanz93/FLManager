@@ -1,5 +1,6 @@
 package com.flmanager.feedlotservice.Controller;
 
+import com.flmanager.feedlotservice.Controller.Response.ProviderResponse;
 import com.flmanager.feedlotservice.Domain.Model.Provider;
 import com.flmanager.feedlotservice.Service.ProviderService;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +20,7 @@ public class ProviderController {
   public ProviderService providerService;
 
   @GetMapping
-  public List<Provider> getProviders() {
+  public List<ProviderResponse> getProviders() {
     log.info("Get all providers request");
     return providerService.getProviders();
   }
