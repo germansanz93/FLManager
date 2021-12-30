@@ -6,10 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Data
@@ -17,7 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "providers")
+@Table(name = "providers", uniqueConstraints = {@UniqueConstraint(columnNames = "email")})
 public class Provider {
     @Id
     @GeneratedValue(generator = "uuid")
@@ -27,6 +24,7 @@ public class Provider {
     private String lastName;
     private String address;
     private String phone;
+    @Column(unique = true, name = "email")
     private String email;
     private Date deletedAt;
 }
