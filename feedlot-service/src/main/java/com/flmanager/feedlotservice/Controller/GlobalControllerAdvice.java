@@ -1,6 +1,7 @@
 package com.flmanager.feedlotservice.Controller;
 
 import com.flmanager.feedlotservice.Exception.ProviderEmailExistsException;
+import com.flmanager.feedlotservice.Exception.ProviderIdNotExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -32,6 +33,15 @@ public class GlobalControllerAdvice {
   public Map<String, String> handlerValidationException(ProviderEmailExistsException ex) {
     Map<String, String> errors = new HashMap<>();
     String fieldName = "Error: Invalid email";
+    errors.put(fieldName, ex.getMessage());
+    return errors;
+  }
+
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  @ExceptionHandler(ProviderIdNotExistsException.class)
+  public Map<String, String> handlerValidationException(ProviderIdNotExistsException ex) {
+    Map<String, String> errors = new HashMap<>();
+    String fieldName = "Error: Invalid id";
     errors.put(fieldName, ex.getMessage());
     return errors;
   }
