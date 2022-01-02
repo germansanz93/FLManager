@@ -42,4 +42,11 @@ public class ProviderController {
     providerService.deleteProvider(idProvider);
   }
 
+  @PutMapping("/{idProvider}")
+  public ProviderResponse updateProvider(@PathVariable(name = "idProvider") String idProvider,
+                                         @RequestBody @Validated ProviderRequest providerRequest){
+    log.info("Request: update provider");
+    return providerService.updateProvider(idProvider, providerRequest);
+  }
+
 }

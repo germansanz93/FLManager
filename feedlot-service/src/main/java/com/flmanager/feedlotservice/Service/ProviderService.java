@@ -4,6 +4,7 @@ import com.flmanager.feedlotservice.Controller.Request.ProviderRequest;
 import com.flmanager.feedlotservice.Controller.Response.ProviderResponse;
 import com.flmanager.feedlotservice.Domain.Mapper.ProviderRequestMapper;
 import com.flmanager.feedlotservice.Domain.Mapper.ProviderResponseMapper;
+import com.flmanager.feedlotservice.Domain.Model.Provider;
 import com.flmanager.feedlotservice.Exception.ProviderEmailExistsException;
 import com.flmanager.feedlotservice.Exception.ProviderIdNotExistsException;
 import com.flmanager.feedlotservice.Repository.IProviderRepository;
@@ -52,6 +53,20 @@ public class ProviderService {
       providerRepository.deleteById(idProvider);
     } catch (EmptyResultDataAccessException ex) {
       throw new ProviderIdNotExistsException("Provider id not found");
+    }
+  }
+
+  public ProviderResponse updateProvider(String idProvider, ProviderRequest providerRequest){
+    if(providerRepository.existsById(idProvider)){
+      try {
+        Provider provider = providerRequestMapper.apply(providerRequest);
+        provider.setIdProvider(idProvider);
+        return providerResponseMapper.apply(providerRepository.save(provider));
+      } catch (DataIntegrityViolationException ex) {
+          throw new ProviderEmailExistsException("Email already taken");
+      }
+    } else {
+      throw new ProviderIdNotExistsException("Prodiver id not found");
     }
   }
 }
