@@ -35,4 +35,11 @@ public class ProviderController {
     log.info("Request: Get one provider");
     return providerService.getProvider(idProvider);
   }
+
+  @DeleteMapping("/{idProvider}")
+  public void deleteProvider(@PathVariable(name = "idProvider") String idProvider){
+    log.info("Request: Delete one provider");
+    providerService.deleteProvider(idProvider);
+  }
+
 }

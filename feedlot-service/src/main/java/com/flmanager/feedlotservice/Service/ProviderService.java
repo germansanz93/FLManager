@@ -10,6 +10,7 @@ import com.flmanager.feedlotservice.Repository.IProviderRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -39,12 +40,18 @@ public class ProviderService {
       return providerResponseMapper.apply(providerRepository.save(providerRequestMapper.apply(providerRequest)));
     } catch (DataIntegrityViolationException ex) {
       throw new ProviderEmailExistsException("Email already taken");
-    } catch (Exception ex) {
-      throw ex;
     }
   }
 
-  public ProviderResponse getProvider(String idProvider){
+  public ProviderResponse getProvider(String idProvider) {
     return providerResponseMapper.apply(providerRepository.findById(idProvider).orElseThrow(() -> new ProviderIdNotExistsException("Provider id not found")));
+  }
+
+  public void deleteProvider(String idProvider) {
+    try {
+      providerRepository.deleteById(idProvider);
+    } catch (EmptyResultDataAccessException ex) {
+      throw new ProviderIdNotExistsException("Provider id not found");
+    }
   }
 }
