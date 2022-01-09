@@ -1,4 +1,4 @@
-package com.flmanager.feedlotservice.Domain.Model;
+package com.flmanager.feedlotservice.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

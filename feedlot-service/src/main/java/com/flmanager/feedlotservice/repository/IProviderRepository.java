@@ -1,6 +1,6 @@
-package com.flmanager.feedlotservice.Repository;
+package com.flmanager.feedlotservice.repository;
 
-import com.flmanager.feedlotservice.Domain.Model.Provider;
+import com.flmanager.feedlotservice.domain.model.Provider;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

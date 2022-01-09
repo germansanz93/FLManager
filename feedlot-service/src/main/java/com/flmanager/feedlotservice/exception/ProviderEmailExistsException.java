@@ -1,4 +1,4 @@
-package com.flmanager.feedlotservice.Exception;
+package com.flmanager.feedlotservice.exception;
 
 import lombok.extern.slf4j.Slf4j;
 

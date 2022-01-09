@@ -1,8 +1,8 @@
-package com.flmanager.feedlotservice.Controller;
+package com.flmanager.feedlotservice.controller;
 
-import com.flmanager.feedlotservice.Controller.Request.ProviderRequest;
-import com.flmanager.feedlotservice.Controller.Response.ProviderResponse;
-import com.flmanager.feedlotservice.Service.ProviderService;
+import com.flmanager.feedlotservice.controller.request.ProviderRequest;
+import com.flmanager.feedlotservice.controller.response.ProviderResponse;
+import com.flmanager.feedlotservice.service.ProviderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;

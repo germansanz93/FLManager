@@ -1,7 +1,7 @@
-package com.flmanager.feedlotservice.Domain.Mapper;
+package com.flmanager.feedlotservice.domain.mapper;
 
-import com.flmanager.feedlotservice.Controller.Response.ProviderResponse;
-import com.flmanager.feedlotservice.Domain.Model.Provider;
+import com.flmanager.feedlotservice.controller.response.ProviderResponse;
+import com.flmanager.feedlotservice.domain.model.Provider;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;

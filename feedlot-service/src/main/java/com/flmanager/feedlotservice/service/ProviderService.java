@@ -1,13 +1,13 @@
-package com.flmanager.feedlotservice.Service;
+package com.flmanager.feedlotservice.service;
 
-import com.flmanager.feedlotservice.Controller.Request.ProviderRequest;
-import com.flmanager.feedlotservice.Controller.Response.ProviderResponse;
-import com.flmanager.feedlotservice.Domain.Mapper.ProviderRequestMapper;
-import com.flmanager.feedlotservice.Domain.Mapper.ProviderResponseMapper;
-import com.flmanager.feedlotservice.Domain.Model.Provider;
-import com.flmanager.feedlotservice.Exception.ProviderEmailExistsException;
-import com.flmanager.feedlotservice.Exception.ProviderIdNotExistsException;
-import com.flmanager.feedlotservice.Repository.IProviderRepository;
+import com.flmanager.feedlotservice.controller.request.ProviderRequest;
+import com.flmanager.feedlotservice.controller.response.ProviderResponse;
+import com.flmanager.feedlotservice.domain.mapper.ProviderRequestMapper;
+import com.flmanager.feedlotservice.domain.mapper.ProviderResponseMapper;
+import com.flmanager.feedlotservice.domain.model.Provider;
+import com.flmanager.feedlotservice.exception.ProviderEmailExistsException;
+import com.flmanager.feedlotservice.exception.ProviderIdNotExistsException;
+import com.flmanager.feedlotservice.repository.IProviderRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;

@@ -1,7 +1,7 @@
-package com.flmanager.feedlotservice.Controller;
+package com.flmanager.feedlotservice.controller;
 
-import com.flmanager.feedlotservice.Exception.ProviderEmailExistsException;
-import com.flmanager.feedlotservice.Exception.ProviderIdNotExistsException;
+import com.flmanager.feedlotservice.exception.ProviderEmailExistsException;
+import com.flmanager.feedlotservice.exception.ProviderIdNotExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -20,7 +20,7 @@ public class GlobalControllerAdvice {
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public Map<String, String> handlerValidationException(MethodArgumentNotValidException ex) {
     Map<String, String> errors = new HashMap<>();
-    ex.getBindingResult().getAllErrors().forEach((error) -> {
+    ex.getBindingResult().getAllErrors().forEach(error -> {
       String fieldName = ((FieldError) error).getField();
       String errorMessage = error.getDefaultMessage();
       errors.put(fieldName, errorMessage);

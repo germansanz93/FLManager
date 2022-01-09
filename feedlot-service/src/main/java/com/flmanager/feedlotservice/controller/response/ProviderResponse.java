@@ -1,26 +1,19 @@
-package com.flmanager.feedlotservice.Controller.Request;
+package com.flmanager.feedlotservice.controller.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Size;
-
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Data
-public class ProviderRequest {
-    @Size(min = 3)
+public class ProviderResponse {
+    private String idProvider;
     private String name;
-    @Size(min = 3)
     private String lastName;
-    @Size(min = 3)
     private String address;
-    @Size(min = 6, max = 20)
     private String phone;
-    @Email
     private String email;
 }
