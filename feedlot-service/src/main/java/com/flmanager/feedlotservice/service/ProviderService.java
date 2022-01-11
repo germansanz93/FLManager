@@ -66,7 +66,7 @@ public class ProviderService {
           throw new ProviderEmailExistsException("Email already taken");
       }
     } else {
-      throw new ProviderIdNotExistsException("Prodiver id not found");
+      throw new ProviderIdNotExistsException("Provider id not found");
     }
   }
 }
